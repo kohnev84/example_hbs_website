@@ -1,0 +1,22 @@
+<input type="text" placeholder="name" id="name_save">
+<input type="text" placeholder="last_name" id="last_name_save">
+<button id="but">добавить пользователя</button>
+
+<script>
+    document.getElementById("but").onclick = async () => {
+        let name = document.getElementById("name_save").value
+        let last_name = document.getElementById("last_name_save").value
+        const reqUserSave = await fetch(
+            '/saveuser',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify({ name, last_name })
+            });
+        const resultUser = await reqUserSave.json();
+        console.log(resultUser)
+    }
+
+</script>
